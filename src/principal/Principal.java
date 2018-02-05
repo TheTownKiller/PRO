@@ -14,6 +14,7 @@ import modelo.Estudiante;
 import modelo.Libro;
 import modelo.Persona;
 import modelo.Profesor;
+import modelo.Vehiculo;
 import modelo.Vendedor;
 import modelo.Venta;
 
@@ -170,13 +171,16 @@ public class Principal {
 //	
 //		practicas.ageCalculation("30-07-1997");
 		
-		Practicas practicas = new Practicas();	
+	//	Practicas practicas = new Practicas();	
 		
 //		HashMap<Vendedor,Venta>pepe = new HashMap<Vendedor,Venta>();
 //		pepe = practicas.ficheroVendedor();
 //		System.out.println("fin");
 		
-		practicas.edadMedia();
+		//practicas.edadMedia();
+		
+		Vehiculo vehiculo = new Vehiculo();
+		vehiculo.ficheroVehiculo();
 	}
 	
 	

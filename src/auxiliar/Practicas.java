@@ -501,13 +501,13 @@ public class Practicas {
 	}
 
 	
-	public int[] generaAleatorios3(int cuantos, int inferior, int superior) // max 30, min 10
+	public ArrayList<Integer> generaAleatorios3(int cuantos, int inferior, int superior) // max 30, min 10
 	{
-		int[] resultado = new int[cuantos];
+		ArrayList<Integer> resultado = new ArrayList<Integer>(cuantos);
 		Random rnd = new Random();
 		for (int i = 0; i < cuantos; i++)
 			// System.out.println(inferior + rnd.nextInt(superior - inferior + 1));
-			resultado[i] = inferior + rnd.nextInt(superior - inferior + 1);
+			resultado.set(i, (inferior + rnd.nextInt(superior - inferior + 1)));
 		return resultado;
 	}
 
@@ -521,11 +521,11 @@ public class Practicas {
 		return resultado;
 	}
 	
-	public int[] frecuenciaAparicion(int cuantos, int inferior, int superior) {
-		int[] resultado = new int[superior - inferior + 1];
-		int[] lanzamientos = this.generaAleatorios3(cuantos, inferior, superior);
-		for (int i = 0; i < lanzamientos.length; i++) {
-			resultado[lanzamientos[i] - 1]++;
+	public ArrayList<Integer> frecuenciaAparicion(int cuantos, int inferior, int superior) {
+		ArrayList<Integer> resultado = new ArrayList<Integer>(superior-inferior+1);
+		ArrayList<Integer> lanzamientos = this.generaAleatorios3(cuantos, inferior, superior);
+		for (int i = 0; i < lanzamientos.size(); i++) {
+			resultado.set(lanzamientos.get(i) - 1, lanzamientos.get(i++)-1);
 		}
 		return resultado;
 
@@ -574,7 +574,7 @@ public class Practicas {
 			System.out.println(dia);
 	}
 
-	public void listaEstudiantes(Estudiante[] lista) {
+	public void listaEstudiantes1(ArrayList<Estudiante> lista) {
 		for (Estudiante estudiante : lista) {
 			// if (estudiante != null)
 			try {
@@ -585,32 +585,32 @@ public class Practicas {
 		}
 	}
 
-	public int visitantesIslaYear(int isla, int[][] v) {
+	public int visitantesIslaYear(int isla, ArrayList<ArrayList<Integer>> v) {
 		int acu = 0;
-		for (int j = 0; j < v[0].length; j++)
-			acu += v[isla][j];
+		for (int j = 0; j < v.get(0).size(); j++)
+			acu += v.get(isla).get(j);
 		return acu;
 	}
 
-	public int visitantesMesYear(int mes, int[][] v) {
+	public int visitantesMesYear(int mes, ArrayList<ArrayList<Integer>> v) {
 		int acu = 0;
-		for (int i = 0; i < v.length; i++)
-			acu += v[i][mes];
+		for (int i = 0; i < v.size(); i++)
+			acu += v.get(i).get(mes);
 		return acu;
 	}
 
-	public void recorrerMatrizIrregularPorColumnas(int[][] matriz) {
+	public void recorrerMatrizIrregularPorColumnas(ArrayList<ArrayList<Integer>> matriz) {
 		int JMAX = 0;
 		// obtenemos el numero maximo de columnas
-		for (int i = 0; i < matriz.length; i++) {
-			if (matriz[i].length > JMAX)
-				JMAX = matriz[i].length;
+		for (int i = 0; i < matriz.size(); i++) {
+			if (matriz.get(i).size() > JMAX)
+				JMAX = matriz.get(i).size();
 		}
 
 		for (int j = 0; j < JMAX; j++) {
-			for (int i = 0; i < matriz.length; i++) {
+			for (int i = 0; i < matriz.size(); i++) {
 				try {
-					System.out.println("[" + i + "][" + j + "]: " + matriz[i][j]);
+					System.out.println("[" + i + "][" + j + "]: " + matriz.get(i).get(j));
 				} catch (ArrayIndexOutOfBoundsException e) {
 					continue;
 				}
@@ -619,18 +619,18 @@ public class Practicas {
 		}
 	}
 
-	public void recorrerMatrizIrregularPorColumnas2(Integer[][] matriz) {
+	public void recorrerMatrizIrregularPorColumnas2(ArrayList<ArrayList<Integer>> matriz) {
 		int JMAX = 0;
 		// obtenemos el numero maximo de columnas
-		for (int i = 0; i < matriz.length; i++) {
-			if (matriz[i].length > JMAX)
-				JMAX = matriz[i].length;
+		for (int i = 0; i < matriz.size(); i++) {
+			if (matriz.get(i).size() > JMAX)
+				JMAX = matriz.get(i).size() ;
 		}
 
 		for (int j = 0; j < JMAX; j++) {
-			for (int i = 0; i < matriz.length; i++) {
+			for (int i = 0; i < matriz.size(); i++) {
 				try {
-					System.out.println("[" + i + "][" + j + "]: " + matriz[i][j].byteValue());
+					System.out.println("[" + i + "][" + j + "]: " + matriz.get(i).get(j).byteValue());
 				} catch (ArrayIndexOutOfBoundsException e) {
 					continue;
 				} catch (NullPointerException e) {
@@ -652,7 +652,6 @@ public class Practicas {
 		listaE.add(est1);
 		listaE.add(est1);
 		listaE.add(est1);
-		int tam = listaE.size();
 		Estudiante est2 = new Estudiante(321);
 		listaE.add(0, est2);
 		listaE.remove(listaE.size() - 1);
