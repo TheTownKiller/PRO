@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Set;
 import auxiliar.Practicas;
+import auxiliar.Practicas2;
 import examen.Metodos;
 import modelo.Datos;
 import modelo.Equipo;
@@ -171,7 +172,7 @@ public class Principal {
 //	
 //		practicas.ageCalculation("30-07-1997");
 		
-	//	Practicas practicas = new Practicas();	
+		Practicas practicas = new Practicas();	
 		
 //		HashMap<Vendedor,Venta>pepe = new HashMap<Vendedor,Venta>();
 //		pepe = practicas.ficheroVendedor();
@@ -179,8 +180,12 @@ public class Principal {
 		
 		//practicas.edadMedia();
 		
-		Vehiculo vehiculo = new Vehiculo();
-		vehiculo.ficheroVehiculo();
+//		Vehiculo vehiculo = new Vehiculo();
+//		vehiculo.ficheroVehiculo();
+		
+		//practicas.visitantesIslaAño("ficheros/visitantes.txt");
+		Practicas2 practicas2 = new Practicas2();	
+		practicas2.Asignador();
 	}
 	
 	

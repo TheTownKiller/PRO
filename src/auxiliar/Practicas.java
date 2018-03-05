@@ -725,6 +725,7 @@ public class Practicas {
 				String nombre = partes[1];
 				Character genero = partes[3].charAt(0);
 			}
+			inFile.close();
 		} catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
 		}
@@ -776,7 +777,7 @@ public class Practicas {
 					vendedores.add(vendedor);
 				}
 				ventasDeVendedores.put(vendedor, ventaVendedor);
-
+				fb.close();
 				// bufferedReader
 			}
 
@@ -821,13 +822,49 @@ public class Practicas {
 				acumulado += edad;
 				numeroFilas = numeroFilas + 1;
 
-			}
+			}inFile.close();
 
 		} catch (FileNotFoundException e) {
 			System.out.println(e.getMessage());
 		}
 		System.out.println(acumulado / numeroFilas);
 		return (acumulado / numeroFilas);
+
+	}
+	
+	public HashMap<String, Float> visitantesIslaAño(String url){
+
+		Float visitantes;
+		HashMap<String, Float> resultante = new HashMap<String, Float>();
+		try {
+			BufferedReader inFile = new BufferedReader(new FileReader(url));
+			while (inFile.ready()) {
+				String texto = inFile.readLine();
+				String[] partes = texto.split("@");
+				int isla = Integer.parseInt(partes[0]) -1;
+				String[]islaArray = {"GRAN CANARIA", "EL HIERRO", "LANZAROTE", "FUERTEVENTURA",
+						"LA GOMERA", "TENERIFE", "LA PALMA"
+						};
+				String[]mesNombre = {"ENERO", "FEBRERO", "MARZO", "ABRIL",
+						"MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE", "OCTUBRE",
+						"NOVIEMBRE", "DICIEMBRE"
+						};
+				int mes = Integer.parseInt(partes[1]) -1;
+				
+				visitantes= (Float.parseFloat(partes[2]));
+				resultante.put(islaArray[isla], visitantes);
+				System.out.println(islaArray[isla] + " - " + mesNombre[mes] + " - " + visitantes);
+				
+			}inFile.close();
+
+		} catch (FileNotFoundException e) {
+			System.out.println(e.getMessage());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultante;
+		
 
 	}
 
