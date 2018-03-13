@@ -36,6 +36,30 @@ public class Practicas2 {
 		}
 		return resultado;
 	}
+	public ArrayList<Integer> AsignaCantidad(String url, int identificador){
+		ArrayList<Integer>resultado = new ArrayList<Integer>();
+		
+		try {
+			BufferedReader inFile = new BufferedReader(new FileReader(url));
+			while (inFile.ready()) {
+				String texto = inFile.readLine();
+				String[] partes = texto.split("%");
+				int id = Integer.parseInt(partes[2]);
+				int habitantes = Integer.parseInt(partes[3]);
+				if(id == identificador) {
+					resultado.add(habitantes);
+					
+				}
+			}inFile.close();
+
+		} catch (FileNotFoundException e) {
+			System.out.println(e.getMessage());
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return resultado;
+	}
 	public ArrayList<String> AsignaComunidadesALista(String url){
 		ArrayList<String>comunidades = new ArrayList<String>();
 		try {
@@ -61,8 +85,11 @@ public class Practicas2 {
 		ArrayList<String> comunidades =AsignaComunidadesALista("ficheros/comunidades.txt");
 		for(int i = 0; i<comunidades.size();i++) {
 			resultante.put(comunidades.get(i),  AsignaProvinciasALista("ficheros/provincias.txt", i+1));
-			System.out.println(comunidades.get(i) + " " +  AsignaProvinciasALista("ficheros/provincias.txt", i+1) + " " + (conteo/2));
-			conteo = 0;
+			System.out.println(comunidades.get(i) + "  " + conteo);
+			System.out.println(AsignaProvinciasALista("ficheros/provincias.txt", i+1));
+			System.out.println(AsignaCantidad("ficheros/provincias.txt", i+1));
+			System.out.println();
+			conteo = 0;	
 		}
 		return resultante;
 		
